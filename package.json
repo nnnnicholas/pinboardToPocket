@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/nnnnicholas/pinboardToPocket/issues"
   },
-  "homepage": "https://github.com/nnnnicholas/pinboardToPocket#readme"
+  "homepage": "https://github.com/nnnnicholas/pinboardToPocket#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0"
+  }
 }
