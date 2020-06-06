@@ -7,15 +7,20 @@ let request_token; // for Pocket
 let lastUpdate; // last time Pinboard was queried
 let now; // current time key-value pair
 
-setInterval (update, 300000);
+//Update every 5 minutes
+// setInterval(update, 300000);
+
+update();
 
 function update() {
     // FETCH LASTUPDATE TIME
     fs.readFile('state.json', (err, data) => {
         if (err) { return console.error(err); }
+        data = JSON.parse(data);
         if (data.lastUpdate) {
-            lastUpdate = data.lastUpdate;
-            console.log("lastUpdate read from file: " + data.lastUpdate);
+            lastUpdate = new Date(data.lastUpdate);
+            console.log(lastUpdate);
+            console.log("^^^^ lastUpdate ^^^^^")
         }
     })
     //PINBOARD//
@@ -29,21 +34,29 @@ function update() {
             }
         })
         .then(function(response) {
-            console.log(response.data);
+            // Filter which posts are new since lastUpdate
+            response.data.posts.forEach(post => {
+                console.log(new Date(post.time).toString());
+                // If the post has been added since last update
+                if (new Date(post.time) > lastUpdate) {
+                    // And is marked To Read
+                    // if (post.toread === true) {
+                        console.log("this post will be sent to pocket");
+                        console.log(post);
+                        //send to pocket
+                    // }
+                }
+            })
         })
         .catch(function(error) {
             console.log(error);
-        })
-        .finally(function() {});
-    // Filter which posts are new since lastUpdate
+        });
 
-    // Send new bookmarks marked ToRead to Pocket.
-    
     //SAVE LASTUPDATE TIME
-    now = {lastUpdate:new Date()};
-    fs.writeFile('state.json', now, (err, data)=>{
-    	if(err) {return console.error(err);}
-    })
+    // now = { lastUpdate: new Date() };
+    // fs.writeFile('state.json', JSON.stringify(now), (err, data) => {
+    //     if (err) { return console.error(err); }
+    // })
 }
 
 
