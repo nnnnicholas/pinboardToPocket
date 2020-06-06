@@ -4,15 +4,24 @@ const pocketKey = process.env.POCKETCONSUMERKEY;
 const axios = require('axios').default;
 let request_token;
 
-axios.get('https://api.pinboard.in/v1/method?auth_token=' + pinboardKey)
+//PINBOARD//
+axios.defaults.baseURL = 'https://api.pinboard.in/v1';
+axios.get('/posts/recent', {
+        params: {
+            auth_token: pinboardKey
+        }
+    })
     .then(function(response) {
         console.log(response);
     })
     .catch(function(error) {
         console.log(error);
     })
-    .finally(function() {
-    });
+    .finally(function() {});
+
+
+
+//POCKET//
 
 // axios.post('https://getpocket.com/v3/oauth/request', {
 // 	consumer_key:pocketKey,
