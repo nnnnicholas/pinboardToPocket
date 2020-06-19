@@ -35,10 +35,9 @@ function update() {
             }
         })
         .then(function(response) {
-            console.log(response.data);
+            // This If statement handles an error that pinboard introduced 14 June 2020. The error includes a superfluous byte order marker. This statement strips it and reconstitutes the data property as a javascript object.
             if (response.data.charCodeAt(0) === 0xFEFF) {
                 response.data = JSON.parse(response.data.slice(1));
-                console.log(response.data.posts);
             }
             // Filter which posts are new since lastUpdate
             response.data.posts.forEach(post => {
