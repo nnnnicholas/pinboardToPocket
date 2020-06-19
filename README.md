@@ -1,5 +1,5 @@
 # pinboardToPocket
-A Node server that syncs new To Read articles from Pinboard to Pocket. I wrote this software to automatically send my Pinboard To Read articles to Pocket, so that they sync automatically with Kobo Forma, as Kobo supports only Pocket and not Pinboard.
+A Node server that syncs new To Read (a.k.a. "Read Later") articles from Pinboard to Pocket. I wrote this software to automatically send my Pinboard To Read articles to Pocket, so that they sync automatically with Kobo Forma, as Kobo supports only Pocket and not Pinboard.
 
 ## Instructions
 1. run `npm install`
