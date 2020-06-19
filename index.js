@@ -8,6 +8,9 @@ let request_token; // Pocket consumer request token
 let lastUpdate; // last time Pinboard was queried
 let now; // current time key-value pair
 
+//Run once
+update();
+
 //Update every 5 minutes
 setInterval(update, 300000);
 
@@ -32,6 +35,11 @@ function update() {
             }
         })
         .then(function(response) {
+            console.log(response.data);
+            if (response.data.charCodeAt(0) === 0xFEFF) {
+                response.data = JSON.parse(response.data.slice(1));
+                console.log(response.data.posts);
+            }
             // Filter which posts are new since lastUpdate
             response.data.posts.forEach(post => {
                 console.log(new Date(post.time).toString());
