@@ -15,7 +15,7 @@ POCKETACCESSTOKEN=
 If your access token changes for some reason (security on Pocket's end?) you may have to rerun pocketAuth.js and input the new Auth Token into the .env.
 
 
-BONUS: I run the app with the NPM package [forever](https://www.npmjs.com/package/forever) as follows:
+**BONUS** I run the app with the NPM package [forever](https://www.npmjs.com/package/forever) as follows:
 `forever start -a index.js`
 
 Note: The `-a` flag appends logs to the logfile. If you don't include it, forever will complain the second time you launch it that there is already a logfile with that name. 
