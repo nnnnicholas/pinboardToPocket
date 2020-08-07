@@ -45,7 +45,7 @@ function update() {
                 // If the post has been added since last update
                 if (new Date(post.time) > lastUpdate) {
                     // And is marked To Read
-                    if (post.toread == "yes") {
+                    // if (post.toread == "yes") {
                         console.log("this post will be sent to pocket");
                         console.log(post);
                         //send to pocket
@@ -63,7 +63,7 @@ function update() {
                             .catch(function(error) {
                                 console.log(error);
                             });
-                    }
+                    // }
                 }
             })
             // SAVE LASTUPDATE TIME
